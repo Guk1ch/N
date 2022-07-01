@@ -1,0 +1,43 @@
+﻿@page "/"
+@using Blazor1.Data
+
+<h1>Builder</h1>
+
+How its work?
+<div>
+    <p>Name</p>
+    <input id="txt_name" @bind="@nameV" type="text"/>
+</div>
+<div>
+    <p>Surname</p>
+    <input id="txt_surname" @bind="@surnameV" type="text" />
+</div>
+<div>
+    <button type="button" class="btn btn-primary" @onclick="RegistUser">Click me</button>
+</div>
+
+
+@code
+{
+
+    public List<User> users { get => users;}
+    public int id = 1;
+    public void RegistUser()
+    {
+        if (nameV.Length != 0 && surnameV.Length != 0)
+        {
+
+            User user = new User();
+            user.Name = nameV;
+            user.Surname = surnameV;
+            user.Id = id;
+            user.date = DateTime.Now;
+            users.Add(user);
+            id++;
+        }
+    }
+}
+@functions{
+    string nameV;
+    string surnameV;
+}
